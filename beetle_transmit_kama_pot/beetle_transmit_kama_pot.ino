@@ -10,7 +10,7 @@ void setup() {
    
 	//use potPin to read potentiometer input 
     pinMode (potPin, INPUT);
-    
+    delay (2000);
 }
  
  
@@ -26,5 +26,5 @@ void loop()
 
 	//don't send too often, otherwise overflooding buffers will cause delay/latency
 
-       delay(100);
+       delay(50);
 }

@@ -15,15 +15,16 @@ int servoNeutral = 90;
 
 void setup() {
   
-  //start servo in neutral position
-  servo.write(servoNeutral);
 
   //connect to digital PWM pin3 (for example Bluno Beetle D3 PWM)
   servo.attach(3);
 
-///this Serial is both for Bluetooth BLE and Serial USB monitor
+  //start servo in neutral position
+  servo.write(servoNeutral);
+
+  ///this Serial is both for Bluetooth BLE and Serial USB monitor
   Serial.begin(115200);               //initial the Serial
-    
+  
 }
  
 //time-out timers for disconnection and Serial print
@@ -42,7 +43,7 @@ void loop()
         
         int servoVal = map(val, 0, 255, 0, 179);
         servo.write(servoVal);
-        if (printCount>100)
+        if (printCount>1000)
         {
           printCount = 0;
           Serial.print("Serial input:");
@@ -58,8 +59,9 @@ void loop()
        servo.write(servoNeutral);
         
         //don't flood the Serial channel, print each 100ms maximum
-        if (printCount>100)
+        if (printCount>1000)
         {
+          printCount = 0;
           Serial.println("LOST reception!");
         }
       }
